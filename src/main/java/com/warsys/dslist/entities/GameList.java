@@ -2,7 +2,6 @@ package com.warsys.dslist.entities;
 
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,25 +10,21 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "tb_gamelist")
+@Table(name = "tb_game_list")
 public class GameList {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	
-	@Column(columnDefinition = "TEXT")
-	private String descricao;
-	
-	private Double preco;
+	private String name;
 	
 	public GameList() {
 	}
 
-	public GameList(Long id, String descricao, Double preco) {
+	public GameList(Long id, String name) {
 		this.id = id;
-		this.descricao = descricao;
-		this.preco = preco;
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -40,25 +35,17 @@ public class GameList {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id, name);
 	}
 
 	@Override
@@ -70,7 +57,7 @@ public class GameList {
 		if (getClass() != obj.getClass())
 			return false;
 		GameList other = (GameList) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
-
+	
 }
